@@ -9,13 +9,21 @@ extends CharacterBody2D
 var move_input : float 
 
 func _physics_process(delta):
+	# gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	# get the move input
 	move_input = Input.get_axis("move_left","move_right")
 	
+	# movement
 	velocity.x = move_input * move_speed
 	
+	# jumping
+	
+	
 	move_and_slide()
+	
+	
 	
 	
