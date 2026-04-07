@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=4 uid="uid://c8au4l32iwjkb"]
+[gd_scene load_steps=7 format=4 uid="uid://c8au4l32iwjkb"]
 
 [ext_resource type="Texture2D" uid="uid://dh8y5c2hb4k6n" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_5imwy"]
 [ext_resource type="TileSet" uid="uid://bppr4mlmr48e0" path="res://Sprites/Tiles/new_tile_set.tres" id="2_u7qji"]
 [ext_resource type="PackedScene" uid="uid://cawe8h1hqy5cn" path="res://Scences/player.tscn" id="3_u7qji"]
+[ext_resource type="Script" uid="uid://btrsikke8py1s" path="res://Scences/enemy.gd" id="4_om10w"]
+[ext_resource type="Texture2D" uid="uid://cgfykvoipit2w" path="res://Sprites/Characters/character_0024.png" id="5_sdg5y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgt54"]
+radius = 8.062258
 
 [node name="Main" type="Node2D"]
 
@@ -15,3 +20,22 @@ tile_map_data = PackedByteArray("AAD7////AAACAAEAAAD6////AAACAAEAAAADAP//AAACAAE
 tile_set = ExtResource("2_u7qji")
 
 [node name="Player" parent="." instance=ExtResource("3_u7qji")]
+position = Vector2(-5, 0)
+
+[node name="Enemy" type="Area2D" parent="."]
+position = Vector2(-5, 0)
+script = ExtResource("4_om10w")
+move_sirection = null
+move_speed = null
+
+[node name="Sprite" type="Sprite2D" parent="Enemy"]
+position = Vector2(37, -20)
+texture = ExtResource("5_sdg5y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(37, -20)
+shape = SubResource("CircleShape2D_qgt54")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
+
+[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]
