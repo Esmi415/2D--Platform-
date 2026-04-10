@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnnrx2c0mx2ep"]
+
+[ext_resource type="Script" uid="uid://btrsikke8py1s" path="res://Scripts/enemy.gd" id="1_3nx23"]
+[ext_resource type="Texture2D" uid="uid://mmb2r8t10sec" path="res://Sprites/Characters/character_0026.png" id="2_ik3e6"]
+[ext_resource type="Texture2D" uid="uid://btkddtutv8nep" path="res://Sprites/Characters/character_0025.png" id="3_8kuie"]
+[ext_resource type="Texture2D" uid="uid://cgfykvoipit2w" path="res://Sprites/Characters/character_0024.png" id="4_ti8dp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgt54"]
+radius = 8.062258
+
+[sub_resource type="Animation" id="Animation_83t8l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_8kuie")]
+}
+
+[sub_resource type="Animation" id="Animation_lhrp6"]
+resource_name = "fly"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_ti8dp"), ExtResource("3_8kuie"), ExtResource("2_ik3e6")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iex0h"]
+_data = {
+&"RESET": SubResource("Animation_83t8l"),
+&"fly": SubResource("Animation_lhrp6")
+}
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_3nx23")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(37, -20)
+texture = ExtResource("3_8kuie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(37, -20)
+shape = SubResource("CircleShape2D_qgt54")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iex0h")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

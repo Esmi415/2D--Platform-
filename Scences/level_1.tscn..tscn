@@ -1,41 +1,88 @@
-[gd_scene load_steps=7 format=4 uid="uid://c8au4l32iwjkb"]
+[gd_scene load_steps=9 format=4 uid="uid://c8au4l32iwjkb"]
 
 [ext_resource type="Texture2D" uid="uid://dh8y5c2hb4k6n" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_5imwy"]
 [ext_resource type="TileSet" uid="uid://bppr4mlmr48e0" path="res://Sprites/Tiles/new_tile_set.tres" id="2_u7qji"]
 [ext_resource type="PackedScene" uid="uid://cawe8h1hqy5cn" path="res://Scences/player.tscn" id="3_u7qji"]
-[ext_resource type="Script" uid="uid://btrsikke8py1s" path="res://Scences/enemy.gd" id="4_om10w"]
-[ext_resource type="Texture2D" uid="uid://cgfykvoipit2w" path="res://Sprites/Characters/character_0024.png" id="5_sdg5y"]
+[ext_resource type="PackedScene" uid="uid://cnnrx2c0mx2ep" path="res://Scences/enemy.tscn" id="4_c3rk0"]
+[ext_resource type="PackedScene" uid="uid://4wsuff8ji4yo" path="res://Scences/coin.tscn" id="5_om10w"]
+[ext_resource type="Script" uid="uid://ctefct5sw73p0" path="res://Scripts/end_flag.gd" id="6_qgt54"]
+[ext_resource type="Texture2D" uid="uid://c4h51e8rjp5sx" path="res://Sprites/Objects/tile_0112.png" id="6_sdg5y"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qgt54"]
-radius = 8.062258
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgt54"]
+radius = 11.0
+height = 22.0
 
 [node name="Main" type="Node2D"]
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
-position = Vector2(-5, -3)
+position = Vector2(0, -139)
 texture = ExtResource("1_5imwy")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD7////AAACAAEAAAD6////AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAD8////AAACAAEAAAAHAP7/AAACAAEAAAAIAP3/AAACAAEAAAD1////AAAEAAAAAAD2////AAACAAEAAAD1//7/AAACAAEAAAD3////AAACAAEAAAD0//3/AAACAAEAAAD0//7/AAAEAAAAAAD0////AAAEAAAAAAD0/wAAAAAEAAAAAAD1/wAAAAAEAAAAAAD2/wAAAAAEAAAAAAD3/wAAAAAEAAAAAAD6/wAAAAAEAAAAAAD7/wAAAAAEAAAAAAD8/wAAAAAFAAEAAAADAAAAAAAFAAEAAAADAAEAAAAFAAEAAAADAAIAAAAFAAEAAAAEAAEAAAAFAAEAAAAEAAAAAAAFAAEAAAAEAAIAAAAFAAEAAAAHAP//AAAFAAEAAAAHAAAAAAAFAAEAAAAHAAEAAAAFAAEAAAAIAAAAAAAFAAEAAAAIAP//AAAFAAEAAAAIAP7/AAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAHAAIAAAAFAAEAAAD0/wEAAAAEAAAAAAD1/wEAAAAEAAAAAAD2/wEAAAAEAAAAAAD3/wEAAAAEAAAAAAALAP3/AAAAAAAAAAANAP//AAAAAAAAAADx//7/AAAAAAEAAADw////AAAAAAEAAADx////AAAFAAAAAADx/wAAAAAFAAEAAADx/wEAAAAFAAAAAADw/wEAAAAFAAAAAADw/wAAAAAFAAAAAAAEAAMAAAAEAAAAAAD//wAAAAACAAEAAAAAAAAAAAACAAEAAAD//wEAAAACAAYAAAAAAAEAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAA=")
+tile_map_data = PackedByteArray("AAD7////AAACAAEAAAD6////AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAD8////AAACAAEAAAAHAP7/AAACAAEAAAAIAP3/AAACAAEAAAD1////AAAEAAAAAAD2////AAACAAEAAAD1//7/AAACAAEAAAD3////AAACAAEAAAD0//3/AAACAAEAAAD0//7/AAAEAAAAAAD0////AAAEAAAAAAD0/wAAAAAEAAAAAAD1/wAAAAAEAAAAAAD2/wAAAAAEAAAAAAD3/wAAAAAEAAAAAAD6/wAAAAAEAAAAAAD7/wAAAAAEAAAAAAD8/wAAAAAFAAEAAAADAAAAAAAFAAEAAAADAAEAAAAFAAEAAAADAAIAAAAFAAEAAAAEAAEAAAAFAAEAAAAEAAAAAAAFAAEAAAAEAAIAAAAFAAEAAAAHAP//AAAFAAEAAAAHAAAAAAAFAAEAAAAHAAEAAAAFAAEAAAAIAAAAAAAFAAEAAAAIAP//AAAFAAEAAAAIAP7/AAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAHAAIAAAAFAAEAAAD0/wEAAAAEAAAAAAD1/wEAAAAEAAAAAAD2/wEAAAAEAAAAAAD3/wEAAAAEAAAAAAALAP3/AAACAAEAAAANAP//AAACAAEAAADx//7/AAAAAAEAAADw////AAACAAEAAADx////AAAFAAAAAADx/wAAAAAFAAEAAADx/wEAAAAFAAAAAADw/wEAAAAFAAAAAADw/wAAAAAFAAAAAAAEAAMAAAAEAAAAAAD//wAAAAACAAEAAAAAAAAAAAACAAEAAAD//wEAAAACAAYAAAAAAAEAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAADv////AAACAAEAAADs/wAAAAACAAEAAADr/wAAAAACAAEAAADo////AAACAAEAAADn////AAACAAEAAADs/wEAAAACAAYAAADr/wEAAAACAAYAAADs/wIAAAACAAYAAADr/wIAAAACAAYAAADn/wAAAAACAAYAAADn/wEAAAACAAYAAADn/wIAAAACAAYAAADo/wIAAAACAAYAAADo/wEAAAACAAYAAADo/wAAAAACAAYAAADv/wAAAAACAAYAAADv/wEAAAACAAYAAADv/wIAAAACAAYAAADw/wIAAAACAAYAAADx/wIAAAACAAYAAAANAAAAAAACAAYAAAANAAEAAAACAAYAAAANAAIAAAACAAYAAAALAP7/AAACAAYAAAALAP//AAACAAYAAAALAAAAAAACAAYAAAARAP7/AAACAAEAAAASAP7/AAACAAEAAAASAP3/AAACAAEAAAATAPz/AAACAAEAAAATAP3/AAACAAEAAAATAP7/AAACAAEAAAATAP//AAACAAEAAAASAP//AAACAAEAAAARAP//AAACAAEAAAAVAPr/AAACAAEAAAAWAPr/AAACAAEAAAAWAPn/AAACAAEAAAAWAPv/AAACAAEAAAAXAPr/AAACAAEAAAAXAPn/AAACAAEAAAAXAPv/AAACAAEAAAAVAPv/AAACAAEAAAAWAPz/AAACAAEAAAAXAPz/AAACAAEAAAAXAP3/AAACAAEAAAAZAPf/AAACAAEAAAAaAPf/AAACAAEAAAAaAPb/AAACAAEAAAAbAPf/AAACAAEAAAAbAPb/AAACAAEAAAAbAPX/AAACAAEAAAAZAPP/AAACAAEAAAAYAPP/AAACAAEAAAAXAPP/AAACAAEAAAAXAPT/AAACAAEAAAAYAPT/AAACAAEAAAAWAPT/AAACAAEAAAAWAPP/AAACAAEAAAAVAPP/AAACAAEAAAAUAPP/AAACAAEAAAA=")
 tile_set = ExtResource("2_u7qji")
 
 [node name="Player" parent="." instance=ExtResource("3_u7qji")]
 position = Vector2(-5, 0)
 
-[node name="Enemy" type="Area2D" parent="."]
-position = Vector2(-5, 0)
-script = ExtResource("4_om10w")
-move_sirection = null
-move_speed = null
+[node name="Enimies" type="Node" parent="."]
 
-[node name="Sprite" type="Sprite2D" parent="Enemy"]
-position = Vector2(37, -20)
-texture = ExtResource("5_sdg5y")
+[node name="Enemy" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(73, -29)
+move_direction = Vector2(1, 43)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(37, -20)
-shape = SubResource("CircleShape2D_qgt54")
+[node name="Enemy2" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(3, -1)
+move_direction = Vector2(1, 20)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
+[node name="Enemy3" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(-74, -9)
+move_direction = Vector2(1, 54)
 
-[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]
+[node name="Enemy4" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(-163, 18)
+move_direction = Vector2(0, -30)
+
+[node name="Enemy5" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(-270, -39)
+move_direction = Vector2(0, -30)
+
+[node name="Enemy6" parent="Enimies" instance=ExtResource("4_c3rk0")]
+position = Vector2(269, -67)
+move_direction = Vector2(14, 34)
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(277, -59)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(0, -6)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(-168, -4)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(-435, 15)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(-797, 10)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_om10w")]
+position = Vector2(348, -219)
+
+[node name="EndFlag" type="Area2D" parent="."]
+position = Vector2(2, -130)
+script = ExtResource("6_qgt54")
+
+[node name="Sprite" type="Sprite2D" parent="EndFlag"]
+position = Vector2(371, -116.125)
+scale = Vector2(1, 1.3472228)
+texture = ExtResource("6_sdg5y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag"]
+position = Vector2(370, -116)
+scale = Vector2(1, 1.3472228)
+shape = SubResource("CapsuleShape2D_qgt54")
+
+[connection signal="area_shape_entered" from="EndFlag" to="EndFlag" method="_on_area_shape_entered"]

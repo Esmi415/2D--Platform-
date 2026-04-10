@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cawe8h1hqy5cn"]
 
-[ext_resource type="Script" uid="uid://o5fu7ltd7mp1" path="res://player.gd" id="1_fdd1h"]
+[ext_resource type="Script" uid="uid://o5fu7ltd7mp1" path="res://Scripts/player.gd" id="1_fdd1h"]
 [ext_resource type="Texture2D" uid="uid://c6la7hdnygtaq" path="res://Sprites/Characters/character_0000.png" id="1_uo0j8"]
 [ext_resource type="Texture2D" uid="uid://c4fl75ppxo3p4" path="res://Sprites/Characters/character_0001.png" id="3_5xvqy"]
 [ext_resource type="Texture2D" uid="uid://b80v4g12sdxgx" path="res://Sprites/Characters/character_0007.png" id="4_yfn50"]
@@ -79,7 +79,7 @@ _data = {
 &"move": SubResource("Animation_xbly7")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_fdd1h")
 metadata/_edit_horizontal_guides_ = [-19.0]
 
