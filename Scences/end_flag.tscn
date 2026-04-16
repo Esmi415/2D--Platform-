@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk5bivfuo8irf"]
+
+[ext_resource type="Script" uid="uid://ctefct5sw73p0" path="res://Scripts/end_flag.gd" id="1_u16fh"]
+[ext_resource type="Texture2D" uid="uid://c4h51e8rjp5sx" path="res://Sprites/Objects/tile_0112.png" id="2_1b8h5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgt54"]
+radius = 11.0
+height = 22.0
+
+[node name="EndFlag" type="Area2D"]
+script = ExtResource("1_u16fh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(371, -116.125)
+scale = Vector2(1, 1.3472228)
+texture = ExtResource("2_1b8h5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(370, -116)
+scale = Vector2(1, 1.3472228)
+shape = SubResource("CapsuleShape2D_qgt54")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
