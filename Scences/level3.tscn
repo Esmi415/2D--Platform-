@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk0e85k8lishl"]
+
+[ext_resource type="Texture2D" uid="uid://bdhetdkirk74w" path="res://Sprites/Tiles/FreePlatformer Tileset/Background/BackGroundBack.png" id="1_wlns7"]
+[ext_resource type="Texture2D" uid="uid://bk466jqd8lkpl" path="res://Sprites/Tiles/FreePlatformer Tileset/Background/Background Sun.png" id="2_xx3c2"]
+[ext_resource type="Texture2D" uid="uid://814x73lw7exx" path="res://Sprites/Tiles/FreePlatformer Tileset/Background/Background Front.png" id="3_jp4kg"]
+[ext_resource type="PackedScene" uid="uid://cnnrx2c0mx2ep" path="res://Scences/enemy.tscn" id="4_g5pyq"]
+
+[node name="BackGroundBack" type="Sprite2D"]
+modulate = Color(0.20392157, 0.7882353, 1, 1)
+position = Vector2(585, 306)
+scale = Vector2(4.0902777, 3.7329545)
+texture = ExtResource("1_wlns7")
+
+[node name="BackgroundSun" type="Sprite2D" parent="."]
+modulate = Color(0.8033132, 0.7997237, 0, 1)
+self_modulate = Color(0.9999983, 0.99823135, 0.5259551, 1)
+position = Vector2(-132.50934, -73.66819)
+scale = Vector2(0.13072993, 0.11605784)
+texture = ExtResource("2_xx3c2")
+
+[node name="BackgroundFront" type="Sprite2D" parent="."]
+position = Vector2(1.5891342, -32.213085)
+scale = Vector2(0.9940578, 1.3508371)
+texture = ExtResource("3_jp4kg")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(1, 0.99999994)
+
+[node name="TileMap" type="TileMap" parent="TileMapLayer"]
+scale = Vector2(0.99999994, 0.9999998)
+format = 2
+
+[node name="Enemy" parent="." instance=ExtResource("4_g5pyq")]
+position = Vector2(-76.03396, 68.84627)
+scale = Vector2(0.4349403, 0.5353626)

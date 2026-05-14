@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8pkocc672d4j"]
+
+[ext_resource type="Texture2D" uid="uid://bxrf75v0ipkbt" path="res://Sprites/Backgrounds/backgroundDesert.png" id="1_q04gf"]
+[ext_resource type="Texture2D" uid="uid://bdhetdkirk74w" path="res://Sprites/Tiles/FreePlatformer Tileset/Background/BackGroundBack.png" id="2_s8dg4"]
+
+[node name="BackgroundDesert" type="Sprite2D"]
+modulate = Color(0.8016463, 0.81962144, 0.8004751, 0.5921569)
+self_modulate = Color(0.7898209, 0.5075035, 0.34127706, 1)
+position = Vector2(550, 288)
+scale = Vector2(1.3388671, 0.71386725)
+texture = ExtResource("1_q04gf")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="BackGroundBack" type="Sprite2D" parent="."]
+self_modulate = Color(0.8235294, 0.5372549, 1, 0.6)
+position = Vector2(-4.854828, -9.805748)
+scale = Vector2(3.5348089, 5.810222)
+texture = ExtResource("2_s8dg4")
