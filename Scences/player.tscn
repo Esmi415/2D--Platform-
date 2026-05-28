@@ -1,9 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://cawe8h1hqy5cn"]
+[gd_scene load_steps=20 format=4 uid="uid://cawe8h1hqy5cn"]
 
 [ext_resource type="Script" uid="uid://o5fu7ltd7mp1" path="res://Scripts/player.gd" id="1_fdd1h"]
 [ext_resource type="Texture2D" uid="uid://c6la7hdnygtaq" path="res://Sprites/Characters/character_0000.png" id="1_uo0j8"]
+[ext_resource type="Texture2D" uid="uid://dh8y5c2hb4k6n" path="res://Sprites/Backgrounds/backgroundForest.png" id="2_26jep"]
 [ext_resource type="Texture2D" uid="uid://c4fl75ppxo3p4" path="res://Sprites/Characters/character_0001.png" id="3_5xvqy"]
+[ext_resource type="TileSet" uid="uid://bppr4mlmr48e0" path="res://Sprites/Tiles/new_tile_set.tres" id="3_f0j0c"]
+[ext_resource type="Texture2D" uid="uid://bcquow8u5oovt" path="res://Sprites/Objects/tile_0044.png" id="3_qye4j"]
+[ext_resource type="Script" uid="uid://xfgstsplgmfy" path="res://Scripts/player_ui.gd" id="3_ywsr4"]
+[ext_resource type="Script" uid="uid://nmfnrluboc7b" path="res://Scripts/camera_shake.gd" id="4_tbo0y"]
 [ext_resource type="Texture2D" uid="uid://b80v4g12sdxgx" path="res://Sprites/Characters/character_0007.png" id="4_yfn50"]
+[ext_resource type="PackedScene" uid="uid://dk5bivfuo8irf" path="res://Scences/end_flag.tscn" id="7_n0f5m"]
+[ext_resource type="PackedScene" uid="uid://4wsuff8ji4yo" path="res://Scences/coin.tscn" id="8_xbly7"]
+[ext_resource type="PackedScene" uid="uid://cnnrx2c0mx2ep" path="res://Scences/enemy.tscn" id="9_xbly7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qye4j"]
+font_size = 32
+font_color = Color(0.9699401, 0.9580558, 0.9258072, 1)
+shadow_size = 8
+shadow_color = Color(0.49019608, 0.02745098, 0, 0.6039216)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdd1h"]
 radius = 11.0
@@ -83,9 +97,39 @@ _data = {
 script = ExtResource("1_fdd1h")
 metadata/_edit_horizontal_guides_ = [-19.0]
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_uo0j8")
-offset = Vector2(0, -12)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("3_ywsr4")
+
+[node name="HealthContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(80, 0)
+offset_left = 0.7378845
+offset_top = 11.171875
+offset_right = 130.73788
+offset_bottom = 51.171875
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("3_qye4j")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("3_qye4j")
+expand_mode = 2
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("3_qye4j")
+expand_mode = 2
+
+[node name="ScoreText" type="Label" parent="CanvasLayer"]
+offset_left = -9.0
+offset_top = 33.0
+offset_right = 179.0
+offset_bottom = 126.0
+text = "Score: 500
+"
+label_settings = SubResource("LabelSettings_qye4j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
@@ -94,6 +138,15 @@ shape = SubResource("CapsuleShape2D_fdd1h")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -10)
 zoom = Vector2(3, 3)
+script = ExtResource("4_tbo0y")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(162, -76)
+texture = ExtResource("2_26jep")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wAAAAACAAEAAAAAAAAAAAACAAEAAAACAAAAAAACAAEAAAABAAAAAAACAAEAAAD+/wAAAAACAAEAAAAEAP7/AAACAAEAAAAFAP//AAACAAEAAAAGAAAAAAACAAEAAAAFAAAAAAACAAYAAAAFAAEAAAACAAYAAAAFAAIAAAACAAYAAAAGAAEAAAACAAYAAAAGAAIAAAACAAYAAAD+/wEAAAACAAYAAAD//wEAAAACAAYAAAD//wMAAAACAAYAAAAAAAEAAAACAAYAAAABAAEAAAACAAYAAAACAAEAAAACAAYAAAD7/wAAAAACAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAACAAEAAAD6/wEAAAACAAYAAAD5/wIAAAACAAYAAAAEAP//AAACAAYAAAAEAAAAAAACAAYAAAAEAAEAAAACAAYAAAAEAAIAAAACAAYAAAAJAAAAAAACAAEAAAAKAAAAAAACAAEAAAANAAAAAAACAAEAAAAOAAAAAAACAAEAAAAPAAAAAAACAAEAAAAOAAEAAAACAAYAAAATAP//AAACAAYAAAAUAP//AAACAAYAAAASAP//AAACAAEAAAATAP7/AAACAAEAAAAUAP7/AAACAAYAAAAUAP3/AAACAAEAAAAXAPv/AAACAAYAAAAWAPv/AAACAAEAAAAVAPv/AAACAAEAAAAWAPz/AAACAAYAAAAXAPz/AAACAAYAAAAXAPr/AAACAAEAAAATAPn/AAAOAAcAAAASAPn/AAAOAAcAAAARAPn/AAANAAcAAAAUAPn/AAAPAAcAAAAOAPj/AAAPAAcAAAANAPj/AAAOAAcAAAAMAPj/AAAOAAcAAAALAPj/AAANAAcAAAD5/wEAAAACAAYAAAD4/wEAAAACAAYAAAD//wIAAAACAAYAAAAAAAIAAAACAAYAAAABAAIAAAACAAYAAAD+/wIAAAACAAYAAAAJAAEAAAACAAYAAAAKAAEAAAACAAYAAAAKAAIAAAACAAYAAAASAAAAAAACAAYAAAATAAAAAAACAAYAAAAIAPf/AAAPAAcAAAAHAPf/AAAOAAcAAAAGAPf/AAAOAAcAAAAFAPf/AAANAAcAAAABAPb/AAAPAAcAAAAAAPb/AAANAAcAAAAGAP//AAAEAAYAAAAJAP//AAAEAAYAAAD+////AAAEAAYAAAACAP//AAAGAAYAAAAFAPb/AAAEAAcAAAAMAPf/AAAEAAcAAAD4////AAAHAAYAAAD5////AAAEAAYAAAD3////AAAFAAYAAAADAPT/AAANAAcAAAAEAPT/AAAOAAcAAAAFAPT/AAAOAAcAAAAGAPT/AAAPAAcAAAABAPL/AAAPAAcAAAAAAPL/AAANAAcAAAD5//P/AAANAAcAAAD0//X/AAANAAcAAAD1//X/AAAPAAcAAAD6//P/AAAOAAcAAAD7//P/AAAOAAcAAAD8//P/AAAPAAcAAAA=")
+tile_set = ExtResource("3_f0j0c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -101,3 +154,58 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="EndFlag" parent="." instance=ExtResource("7_n0f5m")]
+position = Vector2(-567, -92)
+
+[node name="coins" type="Node" parent="."]
+
+[node name="Coin" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(164, -130)
+
+[node name="Coin2" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(-192, 13)
+
+[node name="Coin3" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(28, -9)
+
+[node name="Coin4" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(-171, -221)
+
+[node name="Coin6" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(-54, -240)
+
+[node name="Coin5" parent="coins" instance=ExtResource("8_xbly7")]
+position = Vector2(258, -14)
+
+[node name="Enemy" parent="coins" instance=ExtResource("9_xbly7")]
+position = Vector2(-66, -232)
+
+[node name="Enemy2" parent="coins" instance=ExtResource("9_xbly7")]
+position = Vector2(39, -212)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("9_xbly7")]
+position = Vector2(113, -1)
+move_direction = Vector2(0, 40)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_xbly7")]
+position = Vector2(268, 1)
+move_direction = Vector2(0, 60)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_xbly7")]
+position = Vector2(307, -127)
+move_direction = Vector2(10, 0)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("9_xbly7")]
+position = Vector2(-104, 5)
+move_direction = Vector2(0, 90)
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("9_xbly7")]
+position = Vector2(160, -139)
+move_direction = Vector2(0, 90)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uo0j8")
+offset = Vector2(0, -12)
